@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arsh Jain</title>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --accent: #06b6d4; /* cool cyan/blue */
+      --text: #e5e5e5;
+      --muted: #9ca3af;
+      --frame: rgba(6,182,212,0.85);
+      --max-width: 1100px;
+    }
+
+    /* basic reset */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* page frame */
+    .frame {
+      outline: 3px solid var(--frame);
+      margin: 14px;
+      border-radius: 10px;
+      padding: 18px;
+      min-height: calc(100vh - 28px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 18px;
+    }
+
+    .theme-toggle {
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: var(--max-width);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* hero layout */
+    .hero {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 3vh 0;
+    }
+
+    .hero-left {
+      flex: 1 1 420px;
+      min-width: 0;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 56px);
+      margin-bottom: 12px;
+      line-height: 1.02;
+    }
+
+    p.lead {
+      color: var(--muted);
+      font-size: clamp(14px, 1.9vw, 17px);
+      margin-bottom: 20px;
+      max-width: 70ch;
+    }
+
+    /* social buttons: inline svg icons (no CDN) */
+    .social-inline {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social-inline a {
+      width: 48px;
+      height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+    }
+
+    .social-inline a svg { width: 20px; height: 20px; display:block; }
+    /* icon color & hover */
+    .social-inline a:hover {
+      transform: translateY(-4px);
+      background: var(--accent);
+      color: #000; /* icon inherits this color via currentColor */
+    }
+
+    /* avatar */
+    .avatar-wrap { flex-shrink: 0; display:flex; align-items:center; justify-content:center; }
+    .avatar {
+      position: relative;
+      width: min(280px, 68vw);
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+    }
+
+    .avatar::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background:
+        radial-gradient(closest-side, transparent 78%, rgba(0,0,0,0.0) 79%),
+        repeating-conic-gradient(var(--accent) 0 6deg, transparent 6deg 12deg);
+      z-index: 0;
+      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.6));
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      border: 6px solid rgba(0,0,0,0.45);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display:block;
+    }
+
+    /* small screen adjustments */
+    @media (max-width: 920px) {
+      .hero { flex-direction: column-reverse; text-align:center; gap:28px; padding: 4vh 0; }
+      .avatar { width: min(220px, 56vw); }
+      .hero-left { order: 2; }
+      .avatar-wrap { order: 1; }
+      .social-inline { justify-content: center; }
+      p.lead { margin-left: 12px; margin-right: 12px; }
+    }
+
+    /* screen-reader only */
+    .sr-only {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <!-- header>
+      <button class="theme-toggle" aria-label="Toggle theme">☼</button>
+    </header> -->
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-left">
+          <h1 id="hero-heading">Hey, I'm Arsh!</h1>
+          <p class="lead">
+            // todo
+          </p>
+
+          <div class="social-inline" aria-label="Social links">
+            <!-- GitHub -->
+            <a href="https://github.com/arsh14jain" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.43-3.88-1.43-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.3 1.2-3.11-.12-.29-.52-1.47.12-3.06 0 0 .97-.31 3.18 1.19a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.64 1.59.24 2.77.12 3.06.75.81 1.2 1.85 1.2 3.11 0 4.42-2.7 5.4-5.28 5.68.42.36.79 1.07.79 2.16 0 1.56-.014 2.82-.014 3.2 0 .3.21.66.8.55A10.999 10.999 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/arsh14jain/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.851-3.037-1.851 0-2.134 1.445-2.134 2.943v5.663H9.356V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.6 0 4.266 2.368 4.266 5.451v6.29zM5.337 7.433C4.193 7.433 3.268 6.507 3.268 5.363 3.268 4.219 4.193 3.293 5.337 3.293c1.144 0 2.069.926 2.069 2.07 0 1.144-.925 2.07-2.069 2.07zM6.93 20.452H3.743V9h3.187v11.452z"/></svg>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+
+
+          </div>
+        </div>
+
+        <div class="avatar-wrap" aria-hidden="false">
+          <figure class="avatar" title="Arsh Jain">
+            <img src="arshjain_portfolio_image.png" alt="Portrait of Arsh Jain">
+          </figure>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
