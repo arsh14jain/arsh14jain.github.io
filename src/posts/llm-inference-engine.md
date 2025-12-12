@@ -23,52 +23,9 @@ At a high level, the engine is pretty simple:
   - samples tokens,
   - and decodes the result back to text.
 
-Here’s the architecture as a Mermaid diagram:
+Here's the architecture diagram:
 
-```mermaid
-flowchart TD
-
-    %% Top-level
-    USER["User Input"]
-    CLI["CLI / Entry Point"]
-    ENGINE["Inference Engine"]
-    OUTPUT["Output Text"]
-
-    USER --> CLI --> ENGINE
-
-    %% Internals
-    subgraph Engine_Internals["Inference Engine (single request)"]
-        direction TB
-
-        Prompt["Prompt Preparation"]
-        Cache["Prompt Cache"]
-        Tokens["Tokenization"]
-        Model["LLM Model"]
-        Sampling["Sampling Strategy"]
-        Generate["Token Generation Loop"]
-        Decode["Text Decode"]
-
-        Prompt --> Cache
-
-        Cache -->|"hit"| Tokens
-        Prompt -->|"miss"| Tokens
-        Tokens -->|"store on miss"| Cache
-
-        Tokens --> Model
-
-        %% model forward + sampling loop
-        Model --> Sampling
-        Sampling --> Generate
-
-        Generate --> Sampling
-        Generate --> Model
-
-        Generate --> Decode
-    end
-
-    ENGINE -->|"prompt text"| Prompt
-    Decode --> OUTPUT
-```
+![LLM Inference Engine Architecture](/llm-inference.png)
 
 Read top‑down: the CLI hands your text to the inference engine, the engine prepares the prompt, checks the cache, tokenizes, runs the model and sampling loop, and decodes the tokens back into text.
 
