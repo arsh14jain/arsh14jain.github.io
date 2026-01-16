@@ -34,6 +34,9 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+      <div className="footer-motto">
+        be kind. stay curious.
+      </div>
     </footer>
   );
 };
