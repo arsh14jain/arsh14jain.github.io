@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { blogPosts } from '../data/blogPosts';
 
@@ -23,7 +23,7 @@ const Post = () => {
         </header>
         <div className="post-content">
           <p>The blog post you're looking for doesn't exist.</p>
-          <p><a href="/blog">Return to blog</a></p>
+          <p><Link to="/blog">Return to blog</Link></p>
         </div>
       </article>
     );
