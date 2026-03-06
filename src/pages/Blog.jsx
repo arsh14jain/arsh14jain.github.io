@@ -17,8 +17,11 @@ const Blog = () => {
     return acc;
   }, {});
 
-  // Sort years in descending order
+  // Sort years in descending order, and posts within each year by date descending
   const years = Object.keys(postsByYear).sort((a, b) => b - a);
+  years.forEach(year => {
+    postsByYear[year].sort((a, b) => new Date(b.date) - new Date(a.date));
+  });
 
   // Format date for display
   const formatDate = (dateString) => {

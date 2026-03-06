@@ -3,6 +3,7 @@
 import homeServer from '../posts/home-server.md?raw';
 import llmInferenceEngine from '../posts/llm-inference-engine.md?raw';
 import geospatialIndexVisualizer from '../posts/geospatial-index-visualizer.md?raw';
+import obsidianClaude from '../posts/obsidian-claude.md?raw';
 
 export const blogPosts = [
   {
@@ -30,6 +31,15 @@ export const blogPosts = [
     image: '/geo-quadtree.jpeg',
     description:
       'Built an interactive visualizer to compare how five spatial indexing algorithms — Brute Force, Geohash, Quadtree, S2, and H3 — search for nearby points on a map.',
+  },
+  {
+    slug: 'obsidian-claude',
+    title: 'Building an AI thinking partner inside Obsidian',
+    date: '2026-03-06',
+    markdown: obsidianClaude,
+    image: '/obsidian-claude.png',
+    description:
+      'How I set up an Obsidian vault where Claude Code reads my notes, builds a profile of who I am, and gives honest feedback — not encouragement.',
   },
 ];
 
