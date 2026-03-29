@@ -4,6 +4,7 @@ import homeServer from '../posts/home-server.md?raw';
 import llmInferenceEngine from '../posts/llm-inference-engine.md?raw';
 import geospatialIndexVisualizer from '../posts/geospatial-index-visualizer.md?raw';
 import obsidianClaude from '../posts/obsidian-claude.md?raw';
+import llmTokenPricing from '../posts/llm-token-pricing.md?raw';
 
 export const blogPosts = [
   {
@@ -40,6 +41,15 @@ export const blogPosts = [
     image: '/obsidian-claude.png',
     description:
       'How I set up an Obsidian vault where Claude Code reads my notes, builds a profile of who I am, and gives honest feedback — not encouragement.',
+  },
+  {
+    slug: 'llm-token-pricing',
+    title: 'Deep diving into how LLM API pricing works',
+    date: '2026-03-29',
+    markdown: llmTokenPricing,
+    image: '/llm-token-pricing.png',
+    description:
+      'How LLM token billing actually works, why agents make it quadratic, and what 56 experiments revealed about reducing cost without losing quality.',
   },
 ];
 

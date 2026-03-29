@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { blogPosts } from '../data/blogPosts';
+import Mermaid from '../components/Mermaid';
 
 const Post = () => {
   const { slug } = useParams();
@@ -38,7 +39,17 @@ const Post = () => {
   return (
     <article className="post">
       <div className="post-content">
-        <ReactMarkdown>{post.markdown}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            code({ className, children, ...props }) {
+              const match = /language-mermaid/.test(className || '');
+              if (match) {
+                return <Mermaid chart={String(children).trim()} />;
+              }
+              return <code className={className} {...props}>{children}</code>;
+            },
+          }}
+        >{post.markdown}</ReactMarkdown>
       </div>
     </article>
   );
