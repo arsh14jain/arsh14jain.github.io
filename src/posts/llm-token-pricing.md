@@ -106,13 +106,15 @@ Total billed: 16,959 tokens. Actual useful content: ~5,000 tokens. The rest is t
 
 ## What actually helps
 
-Ran 56 experiments on the agent. 7 benchmark tasks, 8 context management strategies, across Gemini 2.5 Flash and a local Qwen 2.5 3B. Tested full history (no management), sliding windows, LLM-powered summary compaction, and tool result truncation. Full results are in the repo.
+Once you see the snowball, the fix is obvious: make the snowball smaller.
 
-The short version: **truncating tool results before they enter history won.** 43% fewer tokens than the baseline, zero quality loss. The runner-up strategies either didn't trigger (Gemini's 1M context window never hit the compaction threshold) or killed answer quality (sliding windows dropped messages the agent needed later).
+The biggest source of bloat in agent conversations is tool results. A file read dumps 3,000+ tokens into history, and that payload gets resent on every subsequent call. A calculator returns 10 tokens. The difference in downstream cost is massive.
 
-That same `context_heavy` task. Full history: 16,959 tokens. Truncated to 500 chars: 3,748 tokens. Same correct answer. 78% reduction.
+The simplest thing that worked: **truncate tool results before they enter history.** Clip them at the gate. The model already processed the full result on the call where the tool was invoked. On subsequent calls, it only needs enough context to remember what happened, not the full output.
 
-The code:
+That same `context_heavy` task from above. Full history: 16,959 tokens. With tool results truncated to 500 chars: 3,748 tokens. Same correct answer. 78% reduction.
+
+In real money on Gemini 2.5 Flash ($0.30/1M input): that single task goes from $0.005 to $0.001. Tiny. But an agent handling 1,000 requests a day? That's $150/month vs $30/month. Scale it to a real product and the difference pays for an engineer.
 
 ```python
 def on_tool_result(self, result_str):
@@ -122,9 +124,7 @@ def on_tool_result(self, result_str):
     return result_str
 ```
 
-Clip at the gate. Everything downstream (the compounding, the resending) operates on smaller payloads.
-
-One wrinkle: on the small local model (32k context), the story flipped. Summary compaction actually triggered and helped, because the model needed it to avoid hitting the context wall. Different models, different constraints, different winners.
+Other strategies exist (sliding windows, LLM-powered summarization of old messages) but they come with tradeoffs. Sliding windows hard-drop old messages, which kills tasks that need earlier context. Summarization rewrites history, which breaks prompt caching (more on that next). Truncation is the least invasive. It doesn't touch what's already in history. It just makes new entries smaller.
 
 The takeaway: the biggest lever is what goes INTO context, not how you compress it after.
 
@@ -169,8 +169,8 @@ In practice, 60-75% of agent steps are routine enough for a small model. That's 
 
 ## Closing thoughts
 
-Per-token prices are dropping fast. Roughly two orders of magnitude per year. But agents consume 10-100x more tokens than chatbots. The savings don't land the way you'd expect.
+Per-token prices are dropping fast. Roughly two orders of magnitude per year. But agents consume 10-100x more tokens than chatbots. These two trends are racing each other, and right now, consumption is winning.
 
-Understanding the mechanics (why it's quadratic, where the waste is, what to clip) matters more than chasing the cheapest model. An agent with smart context management on an expensive model can cost less than a naive agent on a cheap one.
+The people who'll build cost-effective AI products aren't the ones picking the cheapest model. They're the ones who understand why their agent just billed 17,000 tokens for a 4,000-token answer, and know exactly where to cut.
 
-The code and all 56 experiment results are open source: [`arsh14jain/agentic-ai`](https://github.com/arsh14jain/agentic-ai). Run the benchmarks, swap in different strategies, see what the data says.
+The code is open source: [`arsh14jain/agentic-ai`](https://github.com/arsh14jain/agentic-ai). Poke around, try different strategies, see what the numbers say.
