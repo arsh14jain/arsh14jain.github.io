@@ -529,6 +529,85 @@ ul {
     margin: 30px 0;
 }
 
+/* Misc Page */
+.misc-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.misc-title {
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    margin-bottom: 40px;
+    margin-top: 0;
+    color: #333;
+    font-weight: 400;
+    line-height: 1.2;
+    padding-left: 30px;
+}
+
+.misc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 30px;
+}
+
+.misc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+}
+
+.misc-item:hover {
+    background-color: #fafafa;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: -6px;
+    margin-right: -6px;
+    border-radius: 3px;
+    border-bottom-color: transparent;
+    text-decoration: none;
+}
+
+.misc-item:last-child {
+    border-bottom: none;
+}
+
+.misc-item-name {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    flex-shrink: 0;
+}
+
+.misc-item:hover .misc-item-name {
+    color: #0077cc;
+}
+
+.misc-item-description {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.misc-item-external {
+    flex-shrink: 0;
+    color: #999;
+    display: flex;
+    align-items: center;
+}
+
 /* Guitar Page */
 .guitar-page {
     width: 100%;
@@ -826,6 +905,26 @@ ul {
         font-size: 13px;
     }
 
+    .misc-title {
+        font-size: 26px;
+        padding-left: 0;
+    }
+
+    .misc-intro {
+        padding-left: 0;
+    }
+
+    .misc-list {
+        padding-left: 0;
+    }
+
+    .misc-item:hover {
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+
     .guitar-intro {
         margin-bottom: 30px;
     }
@@ -1041,6 +1140,38 @@ ul {
 
 .dark-mode .guitar-video-title {
     color: #b0b0b0;
+}
+
+.dark-mode .misc-title {
+    color: #e0e0e0;
+}
+
+.dark-mode .misc-intro {
+    color: #888;
+}
+
+.dark-mode .misc-item {
+    border-bottom-color: #2a2a2a;
+}
+
+.dark-mode .misc-item:hover {
+    background-color: #252525;
+}
+
+.dark-mode .misc-item-name {
+    color: #e0e0e0;
+}
+
+.dark-mode .misc-item:hover .misc-item-name {
+    color: #5a9fd4;
+}
+
+.dark-mode .misc-item-description {
+    color: #b0b0b0;
+}
+
+.dark-mode .misc-item-external {
+    color: #888;
 }
 
 /* Responsive dark mode adjustments */

@@ -6,7 +6,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Post from './pages/Post';
-import RabbitHoles from './pages/RabbitHoles';
+import Misc from './pages/RabbitHoles';
 
 import './index.css';
 import './App.css';
@@ -36,7 +36,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/learning" element={<Blog />} />
                   <Route path="/post/:slug" element={<Post />} />
-                  <Route path="/rabbit-holes" element={<RabbitHoles />} />
+                  <Route path="/misc" element={<Misc />} />
                 </Routes>
               </Layout>
             }

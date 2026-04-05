@@ -46,7 +46,8 @@ const Header = () => {
       <div className="name"><Link to="/" onClick={closeMenu}>Arsh Jain</Link></div>
       <nav className={`main-nav ${isMenuOpen ? 'active' : ''}`}>
         <ul>
-          <li><Link to="/blog" onClick={closeMenu}>Blog</Link></li>
+          <li><Link to="/learning" onClick={closeMenu}>Learning...</Link></li>
+          <li><Link to="/misc" onClick={closeMenu}>Misc</Link></li>
           <li className="theme-toggle-desktop">
             {themeToggleButton}
           </li>

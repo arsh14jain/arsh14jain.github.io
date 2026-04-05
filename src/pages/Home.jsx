@@ -15,7 +15,7 @@ const Home = () => {
           Hi! I'm Arsh, a software engineer who enjoys building and maintaining large-scale systems.
         </p>
         <p>
-          I love experimenting with new tech and going down rabbit holes. Trying to using this space to document what I learn and build along the way.
+          I love experimenting with new tech and going down random tangents. Trying to use this space to document what I learn and build along the way.
         </p>
         <p>
          Off-screen, I love classic rock, airplanes, and trying to stay fit.
