@@ -7,6 +7,12 @@ const miscItems = [
     link: 'https://arshja.in/latitudes',
     external: true,
   },
+  {
+    name: 'Still Flying',
+    description: 'An interactive 3D map tracking the most incredible and ambitious space missions.',
+    link: 'https://arshja.in/space',
+    external: true,
+  },
 ];
 
 const Misc = () => {
